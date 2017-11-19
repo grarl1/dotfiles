@@ -101,5 +101,8 @@ alias vz='colorize ${ZSH_FILE}'
 alias sz='source ${ZSH_FILE}'
 alias clc='clear'
 
+# Files
+alias srm='shred -uvz'
+
 # X Windows System
 alias xcpy='xclip -selection c'
