@@ -106,3 +106,6 @@ alias srm='shred -uvz'
 
 # X Windows System
 alias xcpy='xclip -selection c'
+
+# Python
+alias freeze='pip freeze | grep -v pkg-resources==0.0.0'
