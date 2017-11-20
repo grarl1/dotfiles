@@ -106,7 +106,7 @@ values."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'hybrid
+   dotspacemacs-editing-style 'emacs
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -319,10 +319,12 @@ you should place your code here."
   (require 'multiple-cursors)
   (global-set-key (kbd "C-s-n") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-s-p") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-s-l") 'mc/edit-lines)
   (global-set-key (kbd "C-s-a") 'mc/mark-all-like-this)
+  (global-set-key (kbd "C-s-<mouse-1>") 'mc/add-cursor-on-click)
 
   ;; Neo-tree
-  (global-set-key (kbd "M-n") 'neotree-toggle)
+  (global-set-key (kbd "C-s-t") 'neotree-toggle)
 
   ;; Set python interpreter
   (setq python-shell-interpreter "python")
