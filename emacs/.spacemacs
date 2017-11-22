@@ -346,6 +346,9 @@ you should place your code here."
   (when (fboundp 'windmove-default-keybindings)
     (windmove-default-keybindings))
 
+  ;; Whitespace mode
+  (global-set-key (kbd "C-s-w") 'whitespace-mode)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
