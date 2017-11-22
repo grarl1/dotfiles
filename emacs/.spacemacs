@@ -314,6 +314,9 @@ you should place your code here."
   ;; The following is to avoid bugs if ipython is installed in the system
   (setq python-shell-interpreter "python")
 
+  ;; Aliases
+  (defalias 'tail 'auto-revert-tail-mode)
+
   ;; Neo-tree
   (global-set-key (kbd "C-s-t") 'neotree-toggle)
 
@@ -351,6 +354,7 @@ you should place your code here."
 
   ;; TRAMP
   (setq tramp-default-method "ssh")
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
