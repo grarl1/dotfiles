@@ -349,6 +349,8 @@ you should place your code here."
   ;; Whitespace mode
   (global-set-key (kbd "C-s-w") 'whitespace-mode)
 
+  ;; TRAMP
+  (setq tramp-default-method "ssh")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
