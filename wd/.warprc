@@ -1,2 +1,3 @@
 git:~/git_clones
-emacs:~/git_clones/customconf/emacs
+emacs:~/git_clones/dotfiles/emacs
+zsh:~/git_clones/dotfiles/oh-my-zsh
