@@ -341,6 +341,11 @@ you should place your code here."
   (neotree-dir "~")
   (switch-to-buffer-other-window "*spacemacs*")
   (setq projectile-switch-project-action 'neotree-projectile-action)
+
+  ;; Windmove
+  (when (fboundp 'windmove-default-keybindings)
+    (windmove-default-keybindings))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
