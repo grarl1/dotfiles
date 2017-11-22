@@ -331,7 +331,7 @@ you should place your code here."
   (beacon-mode 1)
 
   ;; Auto-complete
-  (auto-complete-mode 1)
+  (global-auto-complete-mode 1)
 
   )
 
