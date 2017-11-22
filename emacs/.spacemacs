@@ -336,6 +336,11 @@ you should place your code here."
   ;; Tabbar
   (tabbar-mode 1)
 
+  ;; Neotree
+  (neotree-toggle)
+  (neotree-dir "~")
+  (switch-to-buffer-other-window "*spacemacs*")
+  (setq projectile-switch-project-action 'neotree-projectile-action)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
