@@ -53,8 +53,8 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(debian colorize cp git history ng pylint python sudo tmux wd)
 
-# Add variables for plugins
-export ZSH_TMUX_AUTOSTART=true
+# Use tmux by default
+export ZSH_TMUX_AUTOSTART=false
 
 # Source oh-my-zsh
 source $ZSH/oh-my-zsh.sh
