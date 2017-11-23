@@ -313,6 +313,10 @@ you should place your code here."
   ;; Set python interpreter
   ;; The following is to avoid bugs if ipython is installed in the system
   (setq python-shell-interpreter "python")
+  
+  ;; If unfortunately I have to use Windows bind windows key to super
+  (setq w32-pass-lwindow-to-system nil)
+  (setq w32-lwindow-modifier 'super)
 
   ;; Aliases
   (defalias 'tail 'auto-revert-tail-mode)
