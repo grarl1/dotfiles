@@ -4,6 +4,7 @@ call vundle#begin()
 
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'digitaltoad/vim-pug'
 
 call vundle#end()
 
