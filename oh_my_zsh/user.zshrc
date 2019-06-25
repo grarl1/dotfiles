@@ -7,3 +7,6 @@ export PROMPT='%{$fg_bold[green]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%M:%{$res
 # Key bindings
 bindkey "^P" up-line-or-beginning-search
 bindkey "^N" down-line-or-beginning-search
+
+# Add bin
+export PATH=$HOME/bin:$PATH
