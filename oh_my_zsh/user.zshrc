@@ -15,6 +15,7 @@ PROMPT+=`prompt_bold_color yellow '%*'` # Time
 PROMPT+=`prompt_bold_color red '%(?.. rv: %?)'` # Return value
 PROMPT+=`printf '\n>> '`
 export PROMPT
+unset -f prompt_bold_color
 
 # Key bindings
 bindkey "^P" up-line-or-beginning-search
