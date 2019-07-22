@@ -2,7 +2,7 @@
 
 # Prompt
 function prompt_bold_color() {
-    echo "%{$fg_bold[$1]%}${@:2}%{$reset_color%}"
+    echo "$fg_bold[$1]${@:2}$reset_color"
 }
 PROMPT=`prompt_bold_color green '%n'` # username
 PROMPT+='@'
@@ -12,7 +12,7 @@ PROMPT+=' $(git_prompt_info)' # git info
 PROMPT+=`prompt_bold_color cyan '%W'` # Date
 PROMPT+=' '
 PROMPT+=`prompt_bold_color yellow '%*'` # Time
-PROMPT+=`prompt_bold_color red '%(?..rv: %?)'` # Return value
+PROMPT+=`prompt_bold_color red '%(?.. rv: %?)'` # Return value
 PROMPT+=`printf '\n>> '`
 export PROMPT
 
