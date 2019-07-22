@@ -22,4 +22,8 @@ bindkey "^P" up-line-or-beginning-search
 bindkey "^N" down-line-or-beginning-search
 
 # Add home bin to path
-export PATH=$HOME/bin:$PATH
+export PATH=${HOME}/bin:${PATH}
+
+# Useful aliases
+alias diskspace="du -h | sort -h -r | less"
+
