@@ -1,8 +1,20 @@
 #!/usr/bin/zsh
 
 # Prompt
-export PROMPT='%{$fg_bold[green]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%M:%{$reset_color%} %{$fg_bold[magenta]%}${PWD/#$HOME/~} %{$reset_color%}$(git_prompt_info) %{$fg_bold[cyan]%}%W%{$reset_color%} %{$fg_bold[yellow]%}%*%{$reset_color%} %(?..%{$fg_bold[red]%}rv: %?%{$reset_color%})
-%B>>%b '
+function prompt_bold_color() {
+    echo "%{$fg_bold[$1]%}${@:2}%{$reset_color%}"
+}
+PROMPT=`prompt_bold_color green '%n'` # username
+PROMPT+='@'
+PROMPT+=`prompt_bold_color blue '%M: '` # hostname
+PROMPT+=`prompt_bold_color magenta '${PWD/#$HOME/~}'` # working directory
+PROMPT+=' $(git_prompt_info)' # git info
+PROMPT+=`prompt_bold_color cyan '%W'` # Date
+PROMPT+=' '
+PROMPT+=`prompt_bold_color yellow '%*'` # Time
+PROMPT+=`prompt_bold_color red '%(?..rv: %?)'` # Return value
+PROMPT+=`printf '\n>> '`
+export PROMPT
 
 # Key bindings
 bindkey "^P" up-line-or-beginning-search
