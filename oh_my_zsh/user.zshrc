@@ -10,6 +10,3 @@ bindkey "^N" down-line-or-beginning-search
 
 # Add home bin to path
 export PATH=$HOME/bin:$PATH
-
-# Aliases
-alias space_usage="echo 'Computing...';ls -a | grep -v .snapshot | tail -n +3 | xargs -I % du -sh % | sort -h -r"
