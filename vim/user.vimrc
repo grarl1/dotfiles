@@ -1,47 +1,53 @@
-"-----------
-" Pluggins |
-"-----------
-
-" Vundle plugins
-so ~/.vim/plugins.vim
-
-" Make lightline plugin work
-set laststatus=2
-
-" NERDTree Toggle
-nnoremap <C-n> :NERDTreeToggle<CR>
-" NERDTree auto open when starting with no args
-autocmd StdinReadPre * let s:std_in:1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" NERDTree auto open when starting on directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" NERDTree close tab if the remaining window is NerdTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" NERDTree auto close when file is open
-let NERDTreeQuitOnOpen = 1
-" NERDTree delete buffer if filed deleted
-let NERDTreeAutoDeleteBuffer = 1
-" NERDTree UI enhancement
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-
-"------------------
+"=================\
 " Custom behavior |
-"------------------
+"=================/
 
-" Set filetype plugin and indent on
+" Turn on detection, plugin and indent.
+" Detection: Detect filetype every time a file is edited.
+" Plugin: Load the corresponding plugin file every time a file is edited.
+" Indent: Load the corresponding indent file every time a file is edited.
+"
+" This is the equivalent of setting:
+"
+" filetype on
+" filetype plugin on
+" filetype indent on
 filetype plugin indent on
 
-" When indenting with '>', use 4 spaces width
-set shiftwidth=4
+" Identation WITHOUT hard tabs (\t)
+set expandtab " On pressing <TAB>, insert 'softtabstop' spaces
+set softtabstop=4 " Width of <TAB> character
+set shiftwidth=4 " Width of indentation when indenting with >>, << or with automatic indentation.
 
-" On pressing tab, insert 4 spaces
-set expandtab
-
-"--------------
+"=============\
 " Custom maps |
-"--------------
+"=============/
 
-" Search and replace selected text
+" Select text in visual mode and press C-r to write the replacement string with the selected text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+"=========\
+" Plugins |
+"=========/
+" Plugins are managed with vim-plug (https://github.com/junegunn/vim-plug)
+
+" Note that --sync flag is used to block the execution until the installer finishes.
+" If you're behind an HTTP proxy, you may need to add --insecure option to the curl command.
+" In that case, you also need to set $GIT_SSL_NO_VERIFY to true.
+if empty(glob('~/.vim/autoload/plug.vim')) " <- vim-plug will be installed here
+  silent !echo "First usage on current host. Downloading and installing vim-plug..."
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !echo "Done\!"
+  silent !echo "Launching vim..."
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC " <- This will install all plugins below
+endif
+
+" Start of vim-plug section
+call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
+
+Plug 'scrooloose/nerdtree'
+
+call plug#end()
+" End of vim-plug section
+
