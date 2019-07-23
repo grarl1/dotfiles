@@ -20,6 +20,10 @@ set softtabstop=4 " Width of <TAB> character
 set shiftwidth=4 " Width of indentation when indenting with >>, << or with
                  " automatic indentation.
 
+" Formatting
+set textwidth=80 " Set automatic word wrapping to 80 columns
+
+
 "=============\
 " Custom maps |
 "=============/
@@ -27,6 +31,7 @@ set shiftwidth=4 " Width of indentation when indenting with >>, << or with
 " Select text in visual mode and press C-r to write the replacement string with
 " the selected text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
 
 "=========\
 " Plugins |
