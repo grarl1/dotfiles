@@ -23,7 +23,6 @@ set shiftwidth=4 " Width of indentation when indenting with >>, << or with
 " Formatting
 set textwidth=80 " Set automatic word wrapping to 80 columns
 
-
 "=============\
 " Custom maps |
 "=============/
@@ -56,8 +55,25 @@ endif
 " Start of vim-plug section
 call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
 
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree' " NERDTree
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim' " Files
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 " End of vim-plug section
 
+"=======================\
+" Plugins customization |
+"=======================/
+
+" For lighline
+" To see available values for the bar, type :h g:lightline.component
+set laststatus=2 " Always display status line
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \     'active': {
+    \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
+    \         'right': [['lineinfo'], ['percent'], ['bufnum', 'fileformat', 'fileencoding']]
+    \     }
+    \ }
