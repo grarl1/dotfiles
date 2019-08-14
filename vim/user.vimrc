@@ -22,15 +22,104 @@ set shiftwidth=4 " Width of indentation when indenting with >>, << or with
 
 " Formatting
 set textwidth=80 " Set automatic word wrapping to 80 columns
+set number " Show line numbers
 
-"=============\
-" Custom maps |
-"=============/
+" Have Vim jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
-" Select text in visual mode and press C-r to write the replacement string with
+" Influences the working of `<BS>`, `<Del>`, `CTRL-W` and `CTRL-U` in Insert
+" mode.  This is a list of items, separated by commas.  Each item allows
+" a way to backspace over something:
+" 
+" value     effect
+" indent    allow backspacing over autoindent
+" eol       allow backspacing over line breaks (join lines)
+" start     allow backspacing over the start of insert; CTRL-W and CTRL-U
+"           stop once at the start of insert.
+set backspace=indent,eol,start
+
+" Highlight current line
+set cursorline
+
+"==================\
+" Custom functions |
+"==================/
+
+" Escape special characters in a string for exact matching.
+" This is useful to copying strings from the file to the search tool
+" Based on this - http://peterodding.com/code/vim/profile/autoload/xolox/escape.vim
+function! EscapeString (string)
+  let string=a:string
+  " Escape regex characters
+  let string = escape(string, '^$.*\/~[]')
+  " Escape the line endings
+  let string = substitute(string, '\n', '\\n', 'g')
+  return string
+endfunction
+
+" Get the current visual block for search and replaces
+" This function passed the visual block through a string escape function
+" Based on this - https://stackoverflow.com/questions/676600/vim-replace-selected-text/677918#677918
+function! GetVisual() range
+  " Save the current register and clipboard
+  let reg_save = getreg('"')
+  let regtype_save = getregtype('"')
+  let cb_save = &clipboard
+  set clipboard&
+
+  " Put the current visual selection in the " register
+  normal! ""gvy
+  let selection = getreg('"')
+
+  " Put the saved registers and clipboards back
+  call setreg('"', reg_save, regtype_save)
+  let &clipboard = cb_save
+
+  "Escape any special characters in the selection
+  let escaped_selection = EscapeString(selection)
+
+  return escaped_selection
+endfunction
+
+"========================\
+" Custom maps / bindings |
+"========================/
+
+" Select text in visual mode and press <leader>-r to write the replacement string with
 " the selected text
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>//gc<left><left><left>
 
+" Toggle NERDTree
+nnoremap <silent> <leader>nn :NERDTreeToggle<CR>
+nnoremap <silent> <leader>nf :NERDTreeFind<CR>
+
+" Binding for quit and save
+nnoremap <silent> <leader>q <esc>:q<CR>
+nnoremap <silent> <leader>w <esc>:w<CR>
+
+" Bindings for tabs
+" New tab
+nnoremap <silent> <leader>tt <esc>:tabe<CR>
+" Previous tab
+nnoremap <silent> , <ESC>:tabp<CR>
+" Next tab
+nnoremap <silent> . <ESC>:tabn<CR>
+" Open current buffer in a new tab
+nnoremap <silent> <leader>tr :tabedit %<CR>
+
+" Previous buffer
+nnoremap <silent> <leader>[ <esc>:bp<CR>
+" Next buffer
+nnoremap <silent> <leader>] <esc>:bn<CR>
+
+" Toggle hlsearch
+nnoremap <silent> <expr> <leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
+
+" Bindings for formatting
+" Format xml file
+nnoremap <silent> <leader>x ggvG:'<,'>!xmllint --format -<CR>
 
 "=========\
 " Plugins |
@@ -55,10 +144,10 @@ endif
 " Start of vim-plug section
 call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
 
-Plug 'scrooloose/nerdtree' " NERDTree
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim' " Files
-Plug 'itchyny/lightline.vim'
+Plug '~/git_clones/vim_plugins/nerdtree'
+Plug '~/git_clones/vim_plugins/ctrlp.vim'
+Plug '~/git_clones/vim_plugins/lightline.vim'
+Plug '~/git_clones/vim_plugins/vim-colors-solarized'
 
 call plug#end()
 " End of vim-plug section
@@ -77,3 +166,9 @@ let g:lightline = {
     \         'right': [['lineinfo'], ['percent'], ['bufnum', 'fileformat', 'fileencoding']]
     \     }
     \ }
+
+
+" For vim-colors-solarized
+syntax enable " Enable syntax highlitghting
+set background=dark
+colorscheme solarized
