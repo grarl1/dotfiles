@@ -148,6 +148,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'lifepillar/vim-solarized8'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 call plug#end()
 " End of vim-plug section
