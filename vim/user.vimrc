@@ -146,7 +146,7 @@ call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
 
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
-Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 Plug 'lifepillar/vim-solarized8'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'lifepillar/vim-mucomplete'
@@ -158,16 +158,9 @@ call plug#end()
 " Plugins customization |
 "=======================/
 
-" For lighline
-" To see available values for the bar, type :h g:lightline.component
-set laststatus=2 " Always display status line
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \     'active': {
-    \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
-    \         'right': [['lineinfo'], ['percent'], ['bufnum', 'fileformat', 'fileencoding']]
-    \     }
-    \ }
+" For vim-airline
+" Automatically displays all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
 
 " For vim-colors-solarized
 syntax enable " Enable syntax highlitghting
