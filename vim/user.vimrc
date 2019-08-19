@@ -147,7 +147,7 @@ call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
 " End of vim-plug section
@@ -170,4 +170,4 @@ let g:lightline = {
 " For vim-colors-solarized
 syntax enable " Enable syntax highlitghting
 set background=dark
-colorscheme solarized
+colorscheme solarized8
