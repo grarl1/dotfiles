@@ -144,10 +144,10 @@ endif
 " Start of vim-plug section
 call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
 
-Plug '~/git_clones/vim_plugins/nerdtree'
-Plug '~/git_clones/vim_plugins/ctrlp.vim'
-Plug '~/git_clones/vim_plugins/lightline.vim'
-Plug '~/git_clones/vim_plugins/vim-colors-solarized'
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 " End of vim-plug section
@@ -166,7 +166,6 @@ let g:lightline = {
     \         'right': [['lineinfo'], ['percent'], ['bufnum', 'fileformat', 'fileencoding']]
     \     }
     \ }
-
 
 " For vim-colors-solarized
 syntax enable " Enable syntax highlitghting
