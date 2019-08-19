@@ -149,6 +149,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'lifepillar/vim-mucomplete'
 
 call plug#end()
 " End of vim-plug section
@@ -172,3 +173,11 @@ let g:lightline = {
 syntax enable " Enable syntax highlitghting
 set background=dark
 colorscheme solarized8
+
+" For vim-mucomplete
+" completeopt available options: 
+"   - menuone: Normal mode
+"   - noselect: autocomplete with no selection
+"   - noinsert: autocomplete with no insertion
+set completeopt+=noinsert
+let g:mucomplete#enable_auto_at_startup = 1
