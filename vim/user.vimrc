@@ -121,6 +121,15 @@ nnoremap <silent> <expr> <leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls').
 " Format xml file
 nnoremap <silent> <leader>x ggvG:'<,'>!xmllint --format -<CR>
 
+" PASTE mode
+nnoremap <silent> <leader>p :set paste<cr>
+
+" Search nocase
+nnoremap <silent> <leader>s /\c
+
+" Buffers
+nnoremap <silent> <leader>b :buffers<cr>
+
 "=========\
 " Plugins |
 "=========/
@@ -148,6 +157,7 @@ Plug '~/git_clones/vim_plugins/nerdtree'
 Plug '~/git_clones/vim_plugins/ctrlp.vim'
 Plug '~/git_clones/vim_plugins/lightline.vim'
 Plug '~/git_clones/vim_plugins/vim-colors-solarized'
+Plug '~/git_clones/vim_plugins/vim-cpp-enhanced-highlight'
 
 call plug#end()
 " End of vim-plug section
