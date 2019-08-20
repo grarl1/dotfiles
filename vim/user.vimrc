@@ -153,11 +153,13 @@ endif
 " Start of vim-plug section
 call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
 
-Plug '~/git_clones/vim_plugins/nerdtree'
-Plug '~/git_clones/vim_plugins/ctrlp.vim'
-Plug '~/git_clones/vim_plugins/lightline.vim'
-Plug '~/git_clones/vim_plugins/vim-colors-solarized'
-Plug '~/git_clones/vim_plugins/vim-cpp-enhanced-highlight'
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'lifepillar/vim-solarized8'
+Plug 'mhinz/vim-signify'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'lifepillar/vim-mucomplete'
 
 call plug#end()
 " End of vim-plug section
@@ -166,19 +168,19 @@ call plug#end()
 " Plugins customization |
 "=======================/
 
-" For lighline
-" To see available values for the bar, type :h g:lightline.component
-set laststatus=2 " Always display status line
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \     'active': {
-    \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
-    \         'right': [['lineinfo'], ['percent'], ['bufnum', 'fileformat', 'fileencoding']]
-    \     }
-    \ }
-
+" For vim-airline
+" Automatically displays all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
 
 " For vim-colors-solarized
 syntax enable " Enable syntax highlitghting
 set background=dark
-colorscheme solarized
+colorscheme solarized8
+
+" For vim-mucomplete
+" completeopt available options: 
+"   - menuone: Normal mode
+"   - noselect: autocomplete with no selection
+"   - noinsert: autocomplete with no insertion
+set completeopt+=noinsert
+let g:mucomplete#enable_auto_at_startup = 1
