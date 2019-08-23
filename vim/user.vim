@@ -155,13 +155,13 @@ endif
 " Start of vim-plug section
 call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
 
-Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
-Plug 'mhinz/vim-signify'
 Plug 'vim-airline/vim-airline'
-Plug 'lifepillar/vim-solarized8'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'kien/ctrlp.vim'
 Plug 'lifepillar/vim-mucomplete'
+Plug 'scrooloose/nerdtree'
+Plug 'mhinz/vim-signify'
+Plug 'lifepillar/vim-solarized8'
 
 call plug#end()
 " End of vim-plug section
