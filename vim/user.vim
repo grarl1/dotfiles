@@ -47,9 +47,10 @@ set backspace=indent,eol,start
 " General
 set omnifunc=syntaxcomplete#Complete
 " Python
-au Filetype python set omnifunc=syntaxcomplete#Complete
+autocmd Filetype python set omnifunc=syntaxcomplete#Complete
 " C++ files
-au Filetype cpp set omnifunc=omni#cpp#complete#Main
+set tags+=~/.vim/tags/cpp
+autocmd Filetype cpp set omnifunc=omni#cpp#complete#Main
 
 "==================\
 " Custom functions |

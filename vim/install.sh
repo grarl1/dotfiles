@@ -1,0 +1,19 @@
+#!/bin/bash
+
+VIMRC=~/.vimrc
+OLDVIMRC=~/.vimrc.old
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+echo "Installing..."
+echo "Saving old ${VIMRC} AS ${OLDVIMRC}"
+
+if [[ -f ${OLDVIMRC} ]]
+then
+    echo "ERROR: ${OLDVIMRC} already exists. Exiting!"
+    exit 1
+fi
+
+mv ${VIMRC} ${OLDVIMRC}
+ln -s ${DIR}/user.vim ${VIMRC}
+
+echo "Done!"
