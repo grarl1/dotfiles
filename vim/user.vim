@@ -23,6 +23,7 @@ set shiftwidth=4 " Width of indentation when indenting with >>, << or with
 " Formatting
 set textwidth=100 " Set automatic word wrapping to <textwidth> columns
 set number " Show line numbers
+set colorcolumn=100
 
 " Have Vim jump to the last position when reopening a file
 if has("autocmd")
