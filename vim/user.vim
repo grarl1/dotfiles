@@ -43,6 +43,14 @@ endif
 "           stop once at the start of insert.
 set backspace=indent,eol,start
 
+" Omnicompletion
+" General
+set omnifunc=syntaxcomplete#Complete
+" Python
+au Filetype python set omnifunc=syntaxcomplete#Complete
+" C++ files
+au Filetype cpp set omnifunc=omni#cpp#complete#Main
+
 "==================\
 " Custom functions |
 "==================/
