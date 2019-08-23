@@ -86,48 +86,49 @@ endfunction
 " Custom maps / bindings |
 "========================/
 
-" Select text in visual mode and press <leader>-r to write the replacement string with
-" the selected text
-vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>//gc<left><left><left>
-
-" Toggle NERDTree
-nnoremap <silent> <leader>nn :NERDTreeToggle<CR>
-nnoremap <silent> <leader>nf :NERDTreeFind<CR>
-
-" Binding for quit and save
-nnoremap <silent> <leader>q <esc>:q<CR>
-nnoremap <silent> <leader>w <esc>:w<CR>
-
-" Bindings for tabs
-" New tab
-nnoremap <silent> <leader>tt <esc>:tabe<CR>
-" Previous tab
-nnoremap <silent> , <ESC>:tabp<CR>
-" Next tab
-nnoremap <silent> . <ESC>:tabn<CR>
-" Open current buffer in a new tab
-nnoremap <silent> <leader>tr :tabedit %<CR>
-
 " Previous buffer
-nnoremap <silent> <leader>[ <esc>:bp<CR>
+nnoremap <silent> <leader>[ <esc>:bp<cr>
 " Next buffer
-nnoremap <silent> <leader>] <esc>:bn<CR>
+nnoremap <silent> <leader>] <esc>:bn<cr>
+
+" Previous tab
+nnoremap <silent> , <ESC>:tabp<cr>
+" Next tab
+nnoremap <silent> . <ESC>:tabn<cr>
+
+
+" Show buffers
+nnoremap <silent> <leader>b :buffers<cr>
+
+" Format xml file
+nnoremap <silent> <leader>fx ggvG:'<,'>!xmllint --format -<cr>
 
 " Toggle hlsearch
 nnoremap <silent> <expr> <leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 
-" Bindings for formatting
-" Format xml file
-nnoremap <silent> <leader>x ggvG:'<,'>!xmllint --format -<CR>
+" Toggle NERDTree
+nnoremap <silent> <leader>nn :NERDTreeToggle<cr>
+nnoremap <silent> <leader>nf :NERDTreeFind<cr>
 
 " PASTE mode
 nnoremap <silent> <leader>p :set paste<cr>
 
-" Search nocase
-nnoremap <silent> <leader>s /\c
+" Quit
+nnoremap <silent> <leader>q <esc>:q<cr>
 
-" Buffers
-nnoremap <silent> <leader>b :buffers<cr>
+" Select text in visual mode and press <leader>-r to write the replacement string
+vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>//gc<left><left><left>
+
+" Search nocase
+nnoremap <leader>s /\c
+
+" New tab
+nnoremap <silent> <leader>tt <esc>:tabe<cr>
+" Open current buffer in a new tab
+nnoremap <silent> <leader>tr :tabedit %<cr>
+
+" Write
+nnoremap <silent> <leader>w <esc>:w<cr>
 
 "=========\
 " Plugins |
