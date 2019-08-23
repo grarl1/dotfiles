@@ -93,10 +93,9 @@ nnoremap <silent> <leader>[ <esc>:bp<cr>
 nnoremap <silent> <leader>] <esc>:bn<cr>
 
 " Previous tab
-nnoremap <silent> , <ESC>:tabp<cr>
+nnoremap <silent> <leader>, <esc>:tabp<cr>
 " Next tab
-nnoremap <silent> . <ESC>:tabn<cr>
-
+nnoremap <silent> <leader>. <esc>:tabn<cr>
 
 " Show buffers
 nnoremap <silent> <leader>b :buffers<cr>
