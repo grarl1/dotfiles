@@ -23,7 +23,8 @@ set shiftwidth=4 " Width of indentation when indenting with >>, << or with
 " Formatting
 set textwidth=100 " Set automatic word wrapping to <textwidth> columns
 set number " Show line numbers
-set colorcolumn=100
+set cursorline " Highlight current line
+set colorcolumn=100 " Highlight column <colorcolumn>
 
 " Have Vim jump to the last position when reopening a file
 if has("autocmd")
@@ -40,9 +41,6 @@ endif
 " start     allow backspacing over the start of insert; CTRL-W and CTRL-U
 "           stop once at the start of insert.
 set backspace=indent,eol,start
-
-" Highlight current line
-set cursorline
 
 "==================\
 " Custom functions |
