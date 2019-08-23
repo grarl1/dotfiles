@@ -99,6 +99,8 @@ nnoremap <silent> <leader>. <esc>:tabn<cr>
 
 " Show buffers
 nnoremap <silent> <leader>b :buffers<cr>
+" Close buffer but not window
+nnoremap <silent> <leader>bd :bp<cr>:bd #<cr>
 
 " Format xml file
 nnoremap <silent> <leader>fx ggvG:'<,'>!xmllint --format -<cr>
@@ -184,3 +186,7 @@ colorscheme solarized8
 "   - noinsert: autocomplete with no insertion
 set completeopt+=noinsert
 let g:mucomplete#enable_auto_at_startup = 1
+
+" For NERDTree
+" Opening file in a new tab keeps NERDTree open
+autocmd BufWinEnter * NERDTreeMirror
