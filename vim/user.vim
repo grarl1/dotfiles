@@ -43,6 +43,10 @@ endif
 "           stop once at the start of insert.
 set backspace=indent,eol,start
 
+" Autocompletion
+" Enter key will simply select the highlighted menu item
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
+
 " Omnicompletion
 set tags=tags;/ " Look for tags up in directories until found
 " General
@@ -51,10 +55,10 @@ set omnifunc=syntaxcomplete#Complete
 autocmd Filetype python set omnifunc=syntaxcomplete#Complete
 " OmniCppComplete
 autocmd Filetype cpp set omnifunc=omni#cpp#complete#Main
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_NamespaceSearch = 1 " search namespaces in the current file
+let OmniCpp_GlobalScopeSearch = 1 " Enable global scope search
+let OmniCpp_ShowAccess = 1 " Show the access (+,#,-) 
+let OmniCpp_ShowPrototypeInAbbr = 1 " Set if the function prototype is displayed in the abbr column of the popup
 let OmniCpp_MayCompleteDot = 1 " autocomplete after .
 let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
 let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
@@ -202,8 +206,11 @@ colorscheme solarized8
 "   - menuone: Normal mode
 "   - noselect: autocomplete with no selection
 "   - noinsert: autocomplete with no insertion
-set completeopt+=noinsert
+set completeopt-=preview
+set completeopt+=menuone
+set completeopt+=noselect
 let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#completion_delay = 500
 
 " For NERDTree
 " Opening file in a new tab keeps NERDTree open
