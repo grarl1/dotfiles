@@ -48,7 +48,6 @@ set backspace=indent,eol,start
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
 
 " Omnicompletion
-set tags=tags;/ " Look for tags up in directories until found
 " General
 set omnifunc=syntaxcomplete#Complete
 " Python
@@ -180,6 +179,7 @@ call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
 Plug 'vim-airline/vim-airline'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'kien/ctrlp.vim'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'scrooloose/nerdtree'
 Plug 'mhinz/vim-signify'
@@ -196,7 +196,7 @@ call plug#end()
 " Automatically displays all buffers when there's only one tab open
 let g:airline#extensions#tabline#enabled = 1
 
-" For vim-colors-solarized
+" For vim-solarized8
 syntax enable " Enable syntax highlitghting
 set background=dark
 colorscheme solarized8
