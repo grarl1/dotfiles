@@ -22,6 +22,7 @@ set shiftwidth=4 " Width of indentation when indenting with >>, << or with
 
 " Formatting
 set number " Show line numbers
+set incsearch " Highlight while searching
 set hlsearch " Highlight search matches
 set cursorline " Highlight current line
 set colorcolumn=100 " Highlight column <colorcolumn>
