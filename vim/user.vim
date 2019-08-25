@@ -90,6 +90,7 @@ nnoremap <silent> <leader>bt :tabedit %<cr>
 
 " Format xml file
 nnoremap <silent> <leader>fx ggvG:'<,'>!xmllint --format -<cr>
+nnoremap <silent> <leader>fc :ClangFormat<cr>
 
 " Toggle hlsearch
 nnoremap <silent> <expr> <leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
@@ -105,7 +106,7 @@ nnoremap <silent> <leader>p :set paste<cr>
 nnoremap <silent> <leader>q <esc>:q<cr>
 
 " Select text in visual mode and press <leader>-r to write the replacement string
-vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>//gc<left><left><left>
+vnoremap <leader>r <esc>:%s/<c-r>=GetVisual()<cr>//gc<left><left><left>
 
 " New tab
 nnoremap <silent> <leader>t <esc>:tabe<cr>
@@ -138,6 +139,7 @@ call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
 
 Plug 'vim-airline/vim-airline'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'rhysd/vim-clang-format'
 Plug 'kien/ctrlp.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'lifepillar/vim-mucomplete'
