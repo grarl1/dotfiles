@@ -2,51 +2,49 @@
 " Custom behavior |
 "=================/
 
-" Turn on detection, plugin and indent.
-" Detection: Detect filetype every time a file is edited.
-" Plugin: Load the corresponding plugin file every time a file is edited.
-" Indent: Load the corresponding indent file every time a file is edited.
-"
-" This is the equivalent of setting:
-"
-" filetype on
-" filetype plugin on
-" filetype indent on
-filetype plugin indent on
+" Filetype options
+filetype plugin indent on " Turn on filetype detection and loading of plugin and indent files.
 
-" Identation WITHOUT hard tabs (\t)
+" Identation
 set expandtab " On pressing <TAB>, insert 'softtabstop' spaces
-set softtabstop=4 " Width of <TAB> character
-set shiftwidth=4 " Width of indentation when indenting with >>, << or with
-                 " automatic indentation.
+set softtabstop=4 " Width of <TAB> character in spaces
+set shiftwidth=4 " Width of indentation when indenting with >>, << or with automatic indentation.
+set autoindent " Always set autoindenting on
+set copyindent " Copy the previous indentation on autoindenting
+set smarttab " Insert <TAB> according to how it's done in other places in the file
 
-" Formatting
-set number " Show line numbers
-set incsearch " Highlight while searching
+" Searching
 set hlsearch " Highlight search matches
+set incsearch " Highlight while typing
+set ignorecase " Ignore case when searching
+set smartcase " Ignore case only if search string is lowercase. Needs ignorecase to be set.
+
+" Rows and columns
+set number " Show line numbers
 set cursorline " Highlight current line
 set colorcolumn=100 " Highlight column <colorcolumn>
 set textwidth=100 " Set automatic word wrapping to <textwidth> columns
+
+" Allow backspacing over autoindent, line breaks, start of insert
+set backspace=indent,eol,start
+
+" Buffers
+set hidden " Hide buffers instead of closing them. Allow to switch buffers without saving.
+
+" Highlighting
+autocmd ColorScheme * " Avoid having highlight cleared by ColorScheme
+        \ highlight Tabs ctermbg=green |
+        \ highlight TrailingWhitespace ctermbg=yellow
+" Match tabs in green and trailing whitespaces in yellow
+highlight Tabs ctermbg=green
+highlight TrailingWhitespace ctermbg=yellow
+match Tabs /\t/
+2match TrailingWhitespace /\s\+$/
 
 " Have Vim jump to the last position when reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
-
-" Influences the working of `<BS>`, `<Del>`, `CTRL-W` and `CTRL-U` in Insert
-" mode.  This is a list of items, separated by commas.  Each item allows
-" a way to backspace over something:
-" 
-" value     effect
-" indent    allow backspacing over autoindent
-" eol       allow backspacing over line breaks (join lines)
-" start     allow backspacing over the start of insert; CTRL-W and CTRL-U
-"           stop once at the start of insert.
-set backspace=indent,eol,start
-
-" Autocompletion
-" Enter key will simply select the highlighted menu item
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
 
 " Omnicompletion
 " General
@@ -65,49 +63,13 @@ let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 set tags+=~/.vim/tags/cpp
 
-"==================\
-" Custom functions |
-"==================/
-
-" Escape special characters in a string for exact matching.
-" This is useful to copying strings from the file to the search tool
-" Based on this - http://peterodding.com/code/vim/profile/autoload/xolox/escape.vim
-function! EscapeString (string)
-  let string=a:string
-  " Escape regex characters
-  let string = escape(string, '^$.*\/~[]')
-  " Escape the line endings
-  let string = substitute(string, '\n', '\\n', 'g')
-  return string
-endfunction
-
-" Get the current visual block for search and replaces
-" This function passed the visual block through a string escape function
-" Based on this - https://stackoverflow.com/questions/676600/vim-replace-selected-text/677918#677918
-function! GetVisual() range
-  " Save the current register and clipboard
-  let reg_save = getreg('"')
-  let regtype_save = getregtype('"')
-  let cb_save = &clipboard
-  set clipboard&
-
-  " Put the current visual selection in the " register
-  normal! ""gvy
-  let selection = getreg('"')
-
-  " Put the saved registers and clipboards back
-  call setreg('"', reg_save, regtype_save)
-  let &clipboard = cb_save
-
-  "Escape any special characters in the selection
-  let escaped_selection = EscapeString(selection)
-
-  return escaped_selection
-endfunction
 
 "========================\
 " Custom maps / bindings |
 "========================/
+
+" Enter key will simply select the highlighted menu item
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
 
 " Previous buffer
 nnoremap <silent> <leader>[ <esc>:bp<cr>
@@ -120,9 +82,11 @@ nnoremap <silent> <leader>, <esc>:tabp<cr>
 nnoremap <silent> <leader>. <esc>:tabn<cr>
 
 " Show buffers
-nnoremap <silent> <leader>b :buffers<cr>
+nnoremap <silent> <leader>bb :buffers<cr>
 " Close buffer but not window
 nnoremap <silent> <leader>bd :bp<cr>:bd #<cr>
+" Open current buffer in a new tab
+nnoremap <silent> <leader>bt :tabedit %<cr>
 
 " Format xml file
 nnoremap <silent> <leader>fx ggvG:'<,'>!xmllint --format -<cr>
@@ -143,13 +107,8 @@ nnoremap <silent> <leader>q <esc>:q<cr>
 " Select text in visual mode and press <leader>-r to write the replacement string
 vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>//gc<left><left><left>
 
-" Search nocase
-nnoremap <leader>s /\c
-
 " New tab
-nnoremap <silent> <leader>tt <esc>:tabe<cr>
-" Open current buffer in a new tab
-nnoremap <silent> <leader>tr :tabedit %<cr>
+nnoremap <silent> <leader>t <esc>:tabe<cr>
 
 " Write
 nnoremap <silent> <leader>w <esc>:w<cr>
@@ -216,3 +175,44 @@ let g:mucomplete#completion_delay = 500
 " For NERDTree
 " Opening file in a new tab keeps NERDTree open
 autocmd BufWinEnter * NERDTreeMirror
+
+"==================\
+" Custom functions |
+"==================/
+
+" Escape special characters in a string for exact matching.
+" This is useful to copying strings from the file to the search tool
+" Based on this - http://peterodding.com/code/vim/profile/autoload/xolox/escape.vim
+function! EscapeString (string)
+  let string=a:string
+  " Escape regex characters
+  let string = escape(string, '^$.*\/~[]')
+  " Escape the line endings
+  let string = substitute(string, '\n', '\\n', 'g')
+  return string
+endfunction
+
+" Get the current visual block for search and replaces
+" This function passed the visual block through a string escape function
+" Based on this - https://stackoverflow.com/questions/676600/vim-replace-selected-text/677918#677918
+function! GetVisual() range
+  " Save the current register and clipboard
+  let reg_save = getreg('"')
+  let regtype_save = getregtype('"')
+  let cb_save = &clipboard
+  set clipboard&
+
+  " Put the current visual selection in the " register
+  normal! ""gvy
+  let selection = getreg('"')
+
+  " Put the saved registers and clipboards back
+  call setreg('"', reg_save, regtype_save)
+  let &clipboard = cb_save
+
+  "Escape any special characters in the selection
+  let escaped_selection = EscapeString(selection)
+
+  return escaped_selection
+endfunction
+
