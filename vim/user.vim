@@ -94,6 +94,9 @@ nnoremap <silent> <leader>fx ggvG:'<,'>!xmllint --format -<cr>
 nnoremap <silent> <leader>fc :ClangFormat<cr>
 vnoremap <silent> <leader>fc :ClangFormat<cr>
 
+nnoremap <silent> <leader>fjp ggvG:'<,'>!jq .<cr>
+nnoremap <silent> <leader>fjm ggvG:'<,'>!jq -c .<cr>
+
 " Toggle hlsearch
 nnoremap <silent> <expr> <leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 
