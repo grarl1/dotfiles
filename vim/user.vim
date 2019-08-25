@@ -90,7 +90,9 @@ nnoremap <silent> <leader>bt :tabedit %<cr>
 
 " Format xml file
 nnoremap <silent> <leader>fx ggvG:'<,'>!xmllint --format -<cr>
+" Format c code
 nnoremap <silent> <leader>fc :ClangFormat<cr>
+vnoremap <silent> <leader>fc :ClangFormat<cr>
 
 " Toggle hlsearch
 nnoremap <silent> <expr> <leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
