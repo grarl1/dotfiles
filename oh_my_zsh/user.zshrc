@@ -26,7 +26,3 @@ export PATH=${HOME}/bin:${PATH}
 
 # Have a colorful life
 export TERM=xterm-256color
-
-# Useful aliases
-alias diskspace="du -h | sort -h -r | less"
-
