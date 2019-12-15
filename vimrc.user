@@ -1,0 +1,103 @@
+"=================\
+" Custom behavior |
+"=================/
+
+" Filetype options
+filetype plugin indent on " Turn on filetype detection and loading of plugin and indent files.
+
+" Identation
+set expandtab " On pressing <TAB>, insert 'softtabstop' spaces
+set softtabstop=4 " Width of <TAB> character in spaces
+set shiftwidth=4 " Width of indentation when indenting with >>, << or with automatic indentation.
+set autoindent " Always set autoindenting on
+set copyindent " Copy the previous indentation on autoindenting
+set smarttab " Insert <TAB> according to how it's done in other places in the file
+
+" Searching
+set hlsearch " Highlight search matches
+set incsearch " Highlight while typing
+set ignorecase " Ignore case when searching
+set smartcase " Ignore case only if search string is lowercase. Needs ignorecase to be set.
+
+" Rows and columns
+set number " Show line numbers
+set cursorline " Highlight current line
+set colorcolumn=100 " Highlight column <colorcolumn>
+set textwidth=100 " Set automatic word wrapping to <textwidth> columns
+
+" Allow backspacing over autoindent, line breaks, start of insert
+set backspace=indent,eol,start
+
+" Buffers
+set hidden " Hide buffers instead of closing them. Allow to switch buffers without saving.
+
+" Have vim jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+"========================\
+" Custom maps / bindings |
+"========================/
+
+" Toggle NERDTree
+nnoremap <silent> <leader>nn :NERDTreeToggle<cr>
+nnoremap <silent> <leader>nf :NERDTreeFind<cr>
+
+" Quit
+nnoremap <silent> <leader>q <esc>:q<cr>
+
+" New tab
+nnoremap <silent> <leader>t <esc>:tabe<cr>
+
+" Write
+nnoremap <silent> <leader>w <esc>:w<cr>
+
+"=========\
+" Plugins |
+"=========/
+" Plugins are managed with vim-plug (https://github.com/junegunn/vim-plug)
+
+" Note that --sync flag is used to block the execution until the installer
+" finishes. If you're behind an HTTP proxy, you may need to add --insecure
+" option to the curl command. In that case, you also need to set
+" $GIT_SSL_NO_VERIFY to true.
+if empty(glob('~/.vim/autoload/plug.vim')) " <- vim-plug will be installed here
+    silent !echo "First usage on current host. 
+        \ Downloading and installing vim-plug..."
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !echo "Done\!"
+    silent !echo "Launching vim..."
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC " <- This will 
+      " install all plugins below
+endif
+
+" Start of vim-plug section
+call plug#begin('~/.vim/plugged') " <- Plugins will be installed here
+
+Plug 'vim-airline/vim-airline'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'lifepillar/vim-solarized8'
+
+call plug#end()
+" End of vim-plug section
+
+"=======================\
+" Plugins customization |
+"=======================/
+
+" For vim-airline
+" Automatically displays all buffers when there's only one tab open
+let g:airline#extensions#tabline#enabled = 1
+
+" For vim-solarized8
+syntax enable " Enable syntax highlitghting
+set background=dark
+colorscheme solarized8
+
+" For NERDTree
+" Opening file in a new tab keeps NERDTree open
+autocmd BufWinEnter * NERDTreeMirror
