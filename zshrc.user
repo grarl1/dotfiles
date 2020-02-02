@@ -1,6 +1,9 @@
 #!/usr/bin/zsh
 
-# prompt
+# aliases
+alias python=python3
+
+# terminal style
 function prompt_color() {
     echo "$fg[$1]$2$reset_color"
 }
@@ -21,8 +24,8 @@ unset -f prompt_color
 bindkey "^P" up-line-or-beginning-search
 bindkey "^N" down-line-or-beginning-search
 
-# add home bin to path
+# settings
 export PATH=${HOME}/bin:${PATH}
-
-# have a colorful life
+export EDITOR=vim
 export TERM=xterm-256color
+
