@@ -53,6 +53,10 @@ nnoremap <silent> <leader>t <esc>:tabe<cr>
 " Write
 nnoremap <silent> <leader>w <esc>:w<cr>
 
+" Next tab
+nnoremap <silent> <leader>, gT
+nnoremap <silent> <leader>. gt
+
 "=========\
 " Plugins |
 "=========/
